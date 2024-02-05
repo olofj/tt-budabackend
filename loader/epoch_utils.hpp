@@ -74,7 +74,7 @@ struct tt_varinst_queue_update_cmd_info {
                 break;
         }
 
-        log_trace(tt::LogLoader, "commutative: {} for this: {} cmd: {}", commutative, *this, cmd);
+        //log_trace(tt::LogLoader, "commutative: {} for this: {} cmd: {}", commutative, *this, cmd);
         return commutative;
     }
 
@@ -98,7 +98,7 @@ struct tt_varinst_queue_update_cmd_info {
                 break;
         }
 
-        log_trace(tt::LogLoader, "prev_cmd: {} + curr_cmd: {} ==> Merged: {}", prev_cmd, *this, merged_cmd);
+        //log_trace(tt::LogLoader, "prev_cmd: {} + curr_cmd: {} ==> Merged: {}", prev_cmd, *this, merged_cmd);
         return merged_cmd;
 
     }

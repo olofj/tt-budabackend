@@ -3190,7 +3190,7 @@ void tt_epoch_loader::varinst_cmd_info_list_merge_local_global(std::vector<tt_va
             auto &sibling_cmd = varinst_cmd_infos.at(idx);
             if (curr_cmd.are_local_global_rdptr_siblings(sibling_cmd)) {
                 curr_cmd.merge_local_globl_rdptr_siblings(sibling_cmd);
-                log_trace(tt::LogLoader, "Merged cmd_idx: {} cmd: {} with sibling_cmd: {}", i, curr_cmd, sibling_cmd);
+                //log_trace(tt::LogLoader, "Merged cmd_idx: {} cmd: {} with sibling_cmd: {}", i, curr_cmd, sibling_cmd);
                 break; // Merged, no need to check further.
             }
         }
@@ -3219,7 +3219,7 @@ void tt_epoch_loader::generate_and_send_varinst_cmds_from_cmd_info_list(const st
     for (int i=0; i<varinst_cmd_infos.size(); i++) {
         auto &info = varinst_cmd_infos.at(i);
         uint16_t num_buffers = 0;
-        log_trace(tt::LogLoader, "Generating EpochCmdVarinst from cmd_idx: {} num_queues: {} cmd: {} ", i, info.queue_names.size(), info);
+        //log_trace(tt::LogLoader, "Generating EpochCmdVarinst from cmd_idx: {} num_queues: {} cmd: {} ", i, info.queue_names.size(), info);
         if (enable_varinst_merge_io_queue_updates) {
             for (auto &queue_name : info.queue_names) {
                 num_buffers += workload.queues.at(queue_name).my_queue_info.alloc_info.size();
@@ -3260,7 +3260,7 @@ void tt_epoch_loader::generate_and_send_varinst_cmds_from_cmd_info_list(const st
 // Inlined means a single cmd for every queue buffer per queue. Address of bufer is inlined in command.
 void tt_epoch_loader::generate_and_send_varinst_cmds_inline(const tt_varinst_queue_update_cmd_info &info, const tt_runtime_workload &workload, std::unordered_set<std::string> queue_names) {
     const static uint8_t num_buffers    = 1;
-    log_debug(tt::LogLoader, "{} starting with num_buffers: {} cmd: {} queue_names: {}", __FUNCTION__, num_buffers, info, queue_names);
+    //log_debug(tt::LogLoader, "{} starting with num_buffers: {} cmd: {} queue_names: {}", __FUNCTION__, num_buffers, info, queue_names);
     const auto &dual_view_rams = workload.get_dual_view_rams_map();
 
     for (auto &queue_name : queue_names){
@@ -3377,8 +3377,8 @@ void tt_epoch_loader::generate_queue_update_external_binaries(
 
 // External means a single cmd + binary per core, the cmd points to binary, and binary contains DRAM addr/ch for every buffer being updated.
 void tt_epoch_loader::generate_and_send_varinst_cmds_external(const tt_varinst_queue_update_cmd_info &info, const tt_runtime_workload &workload, const std::set<std::string>& queue_names) {
-    log_debug(tt::LogLoader, "{} starting for cmd: {} queue_names.size(): {} queue_names: {} update_field_mask: {}",
-        __FUNCTION__, info, queue_names.size(), queue_names, info.update_field_mask.value);
+    //log_debug(tt::LogLoader, "{} starting for cmd: {} queue_names.size(): {} queue_names: {} update_field_mask: {}",
+    //    __FUNCTION__, info, queue_names.size(), queue_names, info.update_field_mask.value);
     // Only one device is allowed. Assert otherwise.
     int target_device = workload.queues.at(*queue_names.begin()).my_queue_info.target_device;
     buda_soc_description &sdesc = cluster->get_soc_desc(target_device);

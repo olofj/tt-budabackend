@@ -5,6 +5,7 @@
 
 #include <chrono>
 #include <string>
+#include <vector>
 
 #include "common/base.hpp"
 #include "model/op.hpp"

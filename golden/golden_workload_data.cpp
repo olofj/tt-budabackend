@@ -216,12 +216,10 @@ void golden_workload_data::allocate_queue(const std::string &queue_name) {
                 log_assert(
                     (not is_address_range_overlapping(address_range, allocated_address_range)) or
                         is_aliased_io(queue_name, allocated_queue_it.first),
-                    "a0={} cannot be allocated due to overlapping address range with a1={} -- \na0={}\na1={} unless "
+                    "a0={} cannot be allocated due to overlapping address range with a1={} -- unless "
                     "its an aliased queue (exactly same address + size)",
                     queue_name,
-                    allocated_queue_it.first,
-                    address_range,
-                    allocated_address_range);
+                    allocated_queue_it.first);
             }
         }
         allocated_queues.at(queue_name).push_back(address_range);
