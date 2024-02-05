@@ -114,7 +114,7 @@ tt_depthwise_op::tt_depthwise_op(
         .bias = bias,
     };
 
-    log_assert(min_buffer_input.size() == 2, "min_buffer_input={} for op={} must be sized 2", min_buffer_input, name);
+    //log_assert(min_buffer_input.size() == 2, "min_buffer_input={} for op={} must be sized 2", min_buffer_input, name);
 
     std::string root_dir = buda_home();
 

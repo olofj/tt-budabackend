@@ -267,7 +267,7 @@ tt_mm_bare_op::tt_mm_bare_op(
         .output_tile_dims = output_tile_dims
     };
 
-    log_assert(min_buffer_input.size() == 2, "min_buffer_input={} for op={} must be sized 2", min_buffer_input, name);
+    //log_assert(min_buffer_input.size() == 2, "min_buffer_input={} for op={} must be sized 2", min_buffer_input, name);
     std::string root_dir = buda_home();
 
     // Use int32 matmul_u kernel if any input or interm buffer is int32

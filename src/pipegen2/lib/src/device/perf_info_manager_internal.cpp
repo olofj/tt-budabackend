@@ -306,7 +306,9 @@ namespace pipegen2::PerfInfoInternal
             .thread_id = 0,
             .epoch_id = 0
         };
-        uint32_t header_word = *(reinterpret_cast<uint32_t*>(&header));
+        ASSERT(sizeof(header) == sizeof(uint32_t), "perf::PerfDumpHeader doesn't fit in an uint32_t");
+        uint32_t header_word;
+        std::memcpy(&header_word, &header, sizeof(header));
 
         uint64_t dram_buf_info =
             (is_first_core_in_bank & 0xff) | ((num_host_queue_slots & 0xff) << 8) | (uint64_t(header_word) << 32);
